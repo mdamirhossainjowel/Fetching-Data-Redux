@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { commentsReducer } from "../Services/Reducers/Reducers";
+import { getAllAction } from "../Services/Actions/Actions";
+
 
 const Comments = () => {
   const { isLoading, comments, error } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(commentsReducer());
+    dispatch(getAllAction());
   }, []);
   return (
     <div>
@@ -14,9 +15,9 @@ const Comments = () => {
       {isLoading && <h3>Loading....</h3>}
       {error && <h3>{error.message}</h3>}
       {comments && comments.map((comment)=>{
-        return <div>
-            <p>{comment}</p>
-        </div>
+        return <article key={comment.id}>
+            <p>{comment.body}</p>
+        </article>
       })}
     </div>
   );
