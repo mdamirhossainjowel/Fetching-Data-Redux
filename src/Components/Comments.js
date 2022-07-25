@@ -13,7 +13,7 @@ const Comments = () => {
     <div>
       <h1>Comments</h1>
       {isLoading && <h3>Loading....</h3>}
-      {error && <h3>{error.message}</h3>}
+      {error && <h3>{error}</h3>}
       {comments && comments.map((comment)=>{
         return <article key={comment.id}>
             <p>{comment.body}</p>
